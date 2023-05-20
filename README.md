@@ -4,4 +4,4 @@ Dademe is an OSS project to help international people to get info around the wor
 
 ## Links
 
-1. More info about (Dademe)[https://goldenrod-education-4f6.notion.site/OSS-Project-Intro-Editing-342eb1e2bc6e415e92f64fb22b56b30f]
+1. More info about [Dademe](https://goldenrod-education-4f6.notion.site/OSS-Project-Intro-Editing-342eb1e2bc6e415e92f64fb22b56b30f)

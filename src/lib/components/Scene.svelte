@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { T, useFrame } from '@threlte/core';
-	import { interactivity, OrbitControls } from '@threlte/extras';
+	import { interactivity, layers, OrbitControls } from '@threlte/extras';
 	import { spring } from 'svelte/motion';
+	import { Editable } from '@threlte/theatre';
 
 	interactivity();
 	const scale = spring(1);
@@ -9,6 +10,8 @@
 	// useFrame((state, delta) => (rotation += delta));
 </script>
 
+
+<!-- Change the color of scene -->
 <!-- Camera -->
 <T.PerspectiveCamera
 	makeDefault
@@ -17,13 +20,22 @@
 		ref.lookAt(0, 0, 0);
 	}}
 >
+	<Editable name="Camera" transform />
 	<OrbitControls enableDamping autoRotate />
 </T.PerspectiveCamera>
 
 <!-- Lights -->
-<T.DirectionalLight position={[3, 10, 7]} intensity={1.5} />
+<T.DirectionalLight position={[3, 10, 7]} intensity={1.5}>
+	<Editable name="Directional Light" intensity position />
+</T.DirectionalLight>
+<T.AmbientLight intensity={0.5}>
+	<Editable name="Ambient Light" intensity />
+</T.AmbientLight>
 
-<T.Mesh scale={$scale} on:pointerenter={() => scale.set(1.5)} on:pointerleave={() => scale.set(1)}>
+<T.Mesh scale={$scale}>
+	<Editable name="Box / Mesh" transform controls />
 	<T.BoxGeometry args={[1, 5, 2]} />
-	<T.MeshStandardMaterial color="green" />
+	<T.MeshStandardMaterial color="green">
+		<Editable name="Box / Material" color roughness metalness />
+	</T.MeshStandardMaterial>
 </T.Mesh>
