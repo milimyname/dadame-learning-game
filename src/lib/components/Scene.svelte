@@ -3,8 +3,8 @@
 	import { interactivity, OrbitControls, Environment, GLTF } from '@threlte/extras';
 	import { spring } from 'svelte/motion';
 	import { Editable } from '@threlte/theatre';
-	import { DoubleSide } from 'three';
 	import Portal from '$lib/components/Portal.svelte';
+	import Park from '$lib/components/Park.svelte';
 
 	interactivity();
 	const scale = spring(1);
@@ -28,12 +28,13 @@
 <!-- <T.DirectionalLight position={[3, 10, 7]} intensity={1.5}>
 	<Editable name="Directional Light" intensity position />
 </T.DirectionalLight> -->
-<!-- <T.AmbientLight intensity={0.5}>
+<T.AmbientLight intensity={1}>
 	<Editable name="Ambient Light" intensity />
-</T.AmbientLight> -->
-<Environment files={'./light.hdr'} />
+</T.AmbientLight>
+<!-- <Environment files={'./light.hdr'} /> -->
 
-<Portal />
+<Park />
+<!-- <Portal /> -->
 
 <!-- <GLTF url="src/lib/assets/model.gltf">
 	<Editable name="Model" transform controls castShadow receiveShadow />

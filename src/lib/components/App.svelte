@@ -3,7 +3,7 @@
 	import { Theatre } from '@threlte/theatre';
 	import { Studio } from '@threlte/theatre';
 
-	import Scene from '$lib/components/Scene.svelte';
+	import Scene from './Scene.svelte';
 	import { dev } from '$app/environment';
 </script>
 
