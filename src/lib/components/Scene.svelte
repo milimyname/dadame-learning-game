@@ -3,8 +3,9 @@
 	import { interactivity, OrbitControls, Environment, GLTF } from '@threlte/extras';
 	import { spring } from 'svelte/motion';
 	import { Editable } from '@threlte/theatre';
-	import Portal from '$lib/components/Portal.svelte';
-	import Park from '$lib/components/Park.svelte';
+	import Tiktak from './Tiktak.svelte';
+	// import Portal from '$lib/components/Portal.svelte';
+	// import Park from '$lib/components/Park.svelte';
 
 	interactivity();
 	const scale = spring(1);
@@ -31,11 +32,9 @@
 <T.AmbientLight intensity={1}>
 	<Editable name="Ambient Light" intensity />
 </T.AmbientLight>
-<!-- <Environment files={'./light.hdr'} /> -->
+<Environment files={'./light.hdr'} />
 
-<Park />
-<!-- <Portal /> -->
-
+<Tiktak />
 <!-- <GLTF url="src/lib/assets/model.gltf">
 	<Editable name="Model" transform controls castShadow receiveShadow />
 </GLTF> -->
