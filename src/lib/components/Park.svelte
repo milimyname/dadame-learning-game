@@ -7,11 +7,14 @@ Command: npx @threlte/gltf@1.0.0-next.12 ./park.glb -t
 	import type * as THREE from 'three';
 	import { Group } from 'three';
 	import { T, type Props, type Events, type Slots, forwardEventHandlers } from '@threlte/core';
-	import { useGltf, useGltfAnimations } from '@threlte/extras';
+	import { interactivity, useGltf, useGltfAnimations } from '@threlte/extras';
+	import { spring } from 'svelte/motion';
 
 	type $$Props = Props<THREE.Group>;
 	type $$Events = Events<THREE.Group>;
 	type $$Slots = Slots<THREE.Group> & { fallback: {}; error: { error: any } };
+	let scale = spring(1);
+	interactivity();
 
 	export const ref = new Group();
 
@@ -212,7 +215,13 @@ Command: npx @threlte/gltf@1.0.0-next.12 ./park.glb -t
 				material={gltf.materials.Material}
 				position={[3.61, -4.59, 0.67]}
 				rotation={[2.48, -0.22, -0.42]}
-				scale={2.22}
+				on:pointerenter={() => {
+					scale.set(2.22);
+				}}
+				on:pointerleave={() => {
+					scale.set(1);
+				}}
+				scale={$scale}
 			/>
 			<T.Mesh
 				name="Plane001"
