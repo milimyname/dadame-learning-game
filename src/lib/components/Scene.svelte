@@ -1,38 +1,49 @@
 <script lang="ts">
-	import { T } from '@threlte/core';
-	import { interactivity, OrbitControls, Environment, GLTF } from '@threlte/extras';
-	import { spring } from 'svelte/motion';
+	import { T, useFrame } from '@threlte/core';
+	import { interactivity, OrbitControls, Environment } from '@threlte/extras';
 	import { Editable } from '@threlte/theatre';
 	import Tiktak from './Tiktak.svelte';
-	// import Portal from '$lib/components/Portal.svelte';
-	// import Park from '$lib/components/Park.svelte';
 
 	interactivity();
-	const scale = spring(1);
+	let innerWidth = 0;
+
+	// Keep the camera look at the center of the scene
+	// useFrame(({ camera }) => {
+	// 	camera.current.lookAt(0, 0, 0);
+	// });
 </script>
+
+<svelte:window {innerWidth} />
 
 <!-- Camera -->
 <T.PerspectiveCamera
 	makeDefault
-	position={[10, 10, 10]}
+	position={[10, innerWidth > 450 ? 10 : 40, 10]}
 	on:create={({ ref }) => {
 		ref.lookAt(0, 0, 0);
 	}}
 >
 	<Editable name="Camera" transform />
-	<OrbitControls enableDamping autoRotate maxPolarAngle={Math.PI / 2}>
-		<Editable name="Orbit Controls" transform maxPolarAngle />
+	<OrbitControls
+		enableDamping
+		maxPolarAngle={Math.PI / 5}
+		enablePan={false}
+		maxDistance={innerWidth > 450 ? 25 : 40}
+		minDistance{innerWidt
+	>
+		450 ? 20 : 40}>
+		<Editable name="Orbit Controls" transform maxPolarAngle maxDistance minDistance />
 	</OrbitControls>
 </T.PerspectiveCamera>
 
 <!-- Lights -->
-<!-- <T.DirectionalLight position={[3, 10, 7]} intensity={1.5}>
+<!-- <T.DirectionalLight position={[3, 10, 7]} intensity={1}>
 	<Editable name="Directional Light" intensity position />
 </T.DirectionalLight> -->
 <T.AmbientLight intensity={1}>
 	<Editable name="Ambient Light" intensity />
 </T.AmbientLight>
-<Environment files={'./light.hdr'} />
+<Environment files={'./light.hdr'} isBackground />
 
 <Tiktak />
 <!-- <GLTF url="src/lib/assets/model.gltf">

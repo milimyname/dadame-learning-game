@@ -19,22 +19,36 @@ Command: npx @threlte/gltf@1.0.0-next.12 ./tiktak.glb -t
 	type GLTFResult = {
 		nodes: {
 			Cube: THREE.Mesh;
-			Cube001: THREE.Mesh;
-			tiktakCube: THREE.Mesh;
-			Text: THREE.Mesh;
-			Text001: THREE.Mesh;
+			board: THREE.Mesh;
+			Cube002: THREE.Mesh;
+			Cube003: THREE.Mesh;
+			Cube004: THREE.Mesh;
+			Cube005: THREE.Mesh;
+			Cube006: THREE.Mesh;
+			Cube007: THREE.Mesh;
+			Cube008: THREE.Mesh;
+			Cube009: THREE.Mesh;
 		};
 		materials: {
-			Material: THREE.MeshStandardMaterial;
-			['Material.001']: THREE.MeshStandardMaterial;
+			['Material.005']: THREE.MeshStandardMaterial;
+			['Material.004']: THREE.MeshStandardMaterial;
 		};
 	};
 
 	const gltf = useGltf<GLTFResult>('/tiktak.glb');
-	interactivity();
-	let scale = spring(0, { stiffness: 0.2, damping: 0.5 });
 
 	const component = forwardEventHandlers();
+
+	interactivity();
+	let position1 = spring(1.52);
+	let position2 = spring(1.52);
+	let position3 = spring(1.52);
+	let position4 = spring(1.52);
+	let position5 = spring(1.52);
+	let position6 = spring(1.52);
+	let position7 = spring(1.52);
+	let position8 = spring(1.52);
+	let position9 = spring(1.52);
 </script>
 
 <T is={ref} dispose={false} {...$$restProps} bind:this={$component}>
@@ -43,53 +57,79 @@ Command: npx @threlte/gltf@1.0.0-next.12 ./tiktak.glb -t
 	{:then gltf}
 		<T.Mesh
 			geometry={gltf.nodes.Cube.geometry}
-			material={gltf.materials.Material}
+			material={gltf.materials['Material.005']}
+			position={[0, 1.52, 0]}
+			scale={[1, 0.26, 1]}
 			on:click={() => {
-				scale.set(1.2);
-				setTimeout(() => {
-					scale.set(0);
-				}, 1000);
+				position1.set(1.72);
+			}}
+			on:mouseenter={() => {
+				position1.set(1.4);
+			}}
+			on:mouseleave={() => {
+				position1.set(1.52);
 			}}
 			on:pointerleave={() => {
-				scale.set(0);
+				position1.set(1.52);
 			}}
 			on:pointerenter={() => {
-				scale.set(-0.2);
+				position1.set(1.4);
 			}}
-			position.y={$scale}
+			position.y={$position1}
 		/>
 		<T.Mesh
-			geometry={gltf.nodes.Cube001.geometry}
-			material={gltf.materials.Material}
-			position={[0, 2.52, 0]}
-			scale={[1.78, 0.1, 1.78]}
+			geometry={gltf.nodes.board.geometry}
+			material={gltf.materials['Material.004']}
+			position={[0, 2.25, 0]}
+			scale={[5.12, 0.34, 5.12]}
 		/>
 		<T.Mesh
-			geometry={gltf.nodes.tiktakCube.geometry}
-			material={gltf.materials['Material.001']}
-			position={[0, 2.62, 3.56]}
-			rotation={[-Math.PI, 0, -Math.PI]}
-			scale={[1.29, 0.1, 1.29]}
+			geometry={gltf.nodes.Cube002.geometry}
+			material={gltf.materials['Material.005']}
+			position={[3.24, 1.52, 0]}
+			scale={[1, 0.26, 1]}
 		/>
 		<T.Mesh
-			geometry={gltf.nodes.Text.geometry}
-			material={gltf.materials.Material}
-			position={[-0.29, 4.69, 3.45]}
+			geometry={gltf.nodes.Cube003.geometry}
+			material={gltf.materials['Material.005']}
+			position={[-3.18, 1.52, 0]}
+			scale={[1, 0.26, 1]}
 		/>
 		<T.Mesh
-			geometry={gltf.nodes.Text001.geometry}
-			material={gltf.materials['Material.001']}
-			position={[-0.29, 4.69, 0.4]}
-			on:click={() => {
-				scale.set(1.2);
-			}}
-			on:pointerleave={() => {
-				scale.set(0);
-			}}
-			on:pointerenter={() => {
-				scale.set(-0.2);
-			}}
-			position.y={$scale + 4.69}
+			geometry={gltf.nodes.Cube004.geometry}
+			material={gltf.materials['Material.005']}
+			position={[0, 1.52, 3.04]}
+			scale={[1, 0.26, 1]}
+		/>
+		<T.Mesh
+			geometry={gltf.nodes.Cube005.geometry}
+			material={gltf.materials['Material.005']}
+			position={[3.24, 1.52, 3.04]}
+			scale={[1, 0.26, 1]}
+		/>
+		<T.Mesh
+			geometry={gltf.nodes.Cube006.geometry}
+			material={gltf.materials['Material.005']}
+			position={[-3.18, 1.52, 3.04]}
+			scale={[1, 0.26, 1]}
+		/>
+		<T.Mesh
+			geometry={gltf.nodes.Cube007.geometry}
+			material={gltf.materials['Material.005']}
+			position={[0, 1.52, -3.05]}
+			scale={[1, 0.26, 1]}
+		/>
+		<T.Mesh
+			geometry={gltf.nodes.Cube008.geometry}
+			material={gltf.materials['Material.005']}
+			position={[3.24, 1.52, -3.05]}
+			scale={[1, 0.26, 1]}
+		/>
+		<T.Mesh
+			geometry={gltf.nodes.Cube009.geometry}
+			material={gltf.materials['Material.005']}
+			position={[-3.18, 1.52, -3.05]}
+			scale={[1, 0.26, 1]}
 		/>
 	{:catch error}
 		<slot name="error" {error} />

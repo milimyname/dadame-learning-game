@@ -4,10 +4,9 @@
 	import { Studio } from '@threlte/theatre';
 
 	import Scene from './Scene.svelte';
-	import { dev } from '$app/environment';
 </script>
 
-<Studio enabled={dev} />
+<Studio enabled={import.meta.env.DEV} />
 <Canvas>
 	<Theatre>
 		<Scene />

@@ -2,6 +2,6 @@
 	import App from '$lib/components/App.svelte';
 </script>
 
-<div class="h-screen w-screen bg-black">
+<div class="h-screen w-screen bg-black select-none">
 	<App />
 </div>
